@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
+    [Header("REFERENCE")]
+    [SerializeField] private LineRenderer lineRender;
+    
     [Header("CONFIG")] 
     [SerializeField] private bool IsGizmosDraw;
     [SerializeField] private GridContext context;
     private GridSpaceConverter gridSpaceConverter;
     private Vector2 gridPositionInWorld;
     private Grid<ItemSO> slots;
-    private IDraw _gridGizmosDraw;
+    private GridDraw gridDraw;
     
     private Camera mainCam;
     
@@ -18,25 +21,27 @@ public class GameBoard : MonoBehaviour
     private void Awake()
     {
         slots = new Grid<ItemSO>(context.gridSize);
-        _gridGizmosDraw = new GridGizmosDraw(context);
+        gridDraw = new GridDraw(context);
         gridSpaceConverter = new GridSpaceConverter(context);
         mainCam = Camera.main;
     }
-
+    
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(gridSpaceConverter.GetCell(mousePosition));
+            Vector2 cell = gridSpaceConverter.GetCell(mousePosition);
+           if(cell != new Vector2(9999,9999))  Debug.Log(cell);
         }
     }
+    
 
 
     public void OnDrawGizmos()
     {
-        if(_gridGizmosDraw == null || !IsGizmosDraw) return;
-        _gridGizmosDraw.Draw();
+        if(gridDraw == null || !IsGizmosDraw) return;
+        gridDraw.Draw();
     }
     
 }
