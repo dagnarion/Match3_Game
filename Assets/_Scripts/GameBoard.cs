@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
-    [Header("REFERENCE")]
-    [SerializeField] private LineRenderer lineRender;
+    [Header("REFERENCE")] 
+    [SerializeField] private ItemSO item;
     
     [Header("CONFIG")] 
     [SerializeField] private bool IsGizmosDraw;
@@ -32,7 +32,10 @@ public class GameBoard : MonoBehaviour
         {
             Vector2 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 cell = gridSpaceConverter.GetCell(mousePosition);
-           if(cell != new Vector2(9999,9999))  Debug.Log(cell);
+            if (cell != new Vector2(9999, 9999))
+            {
+                ItemFactory.CreateItem(item).transform.position = cell;
+            }
         }
     }
     
