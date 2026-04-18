@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridSpaceConverter
+public class GridSpaceConverter 
 {
     private GridContext gridContext;
 
@@ -31,3 +31,4 @@ public class GridSpaceConverter
     }
 
 }
+// class này dùng để lấy vị trí mà player ấn vào

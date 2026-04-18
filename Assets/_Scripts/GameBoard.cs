@@ -6,12 +6,8 @@ public class GameBoard : MonoBehaviour
 {
     [Header("REFERENCE")] 
     [SerializeField] private ItemSO item;
-    
-    [Header("CONFIG")] 
-    [SerializeField] private bool IsGizmosDraw;
     [SerializeField] private GridContext context;
     private GridSpaceConverter gridSpaceConverter;
-    private Vector2 gridPositionInWorld;
     private Grid<ItemSO> slots;
     private GridDraw gridDraw;
     
@@ -25,25 +21,39 @@ public class GameBoard : MonoBehaviour
         gridSpaceConverter = new GridSpaceConverter(context);
         mainCam = Camera.main;
     }
-    
-    private void Update()
+
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0))
+        FillItemToBoard();
+    }
+
+
+    private void FillItemToBoard()
+    {
+        float xSize = context.gridSize.x;
+        float ySize = context.gridSize.y;
+        Vector2 gridInWorld = context.GetGridInWorld();
+        for (int x = 0; x < xSize; x++)
         {
-            Vector2 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 cell = gridSpaceConverter.GetCell(mousePosition);
-            if (cell != new Vector2(9999, 9999))
+            for (int y = 0; y < ySize; y++)
             {
-                ItemFactory.CreateItem(item).transform.position = cell;
+                Vector3 position = new Vector2(x, y) * context.cellSize + gridInWorld;
+                InitializeItem(position);
             }
         }
     }
+
+    private void InitializeItem(Vector2 position)
+    {
+        Vector2Int itemPosition =  gridSpaceConverter.GetCell(position);
+        slots.AddItemToSlot(item,itemPosition.x,itemPosition.y);
+        ItemFactory.CreateItem(item).transform.position = position;
+    }
     
-
-
     public void OnDrawGizmos()
     {
-        if(gridDraw == null || !IsGizmosDraw) return;
+        if(gridDraw == null) return;
+        gridDraw.ChangeGridContext(context);
         gridDraw.Draw();
     }
     

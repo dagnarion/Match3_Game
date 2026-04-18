@@ -370,11 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameBoard
   item: {fileID: 11400000, guid: d6146637eb10cb441ae30f45744b92fe, type: 2}
-  IsGizmosDraw: 1
-  context:
-    <gridSize>k__BackingField: {x: 3, y: 3}
-    <cellSize>k__BackingField: {x: 1, y: 1}
-    <gridPosition>k__BackingField: {x: 0, y: 0}
+  context: {fileID: 11400000, guid: 014a92429d7c01a46b9dbbac810f4220, type: 2}
 --- !u!4 &751566935
 Transform:
   m_ObjectHideFlags: 0

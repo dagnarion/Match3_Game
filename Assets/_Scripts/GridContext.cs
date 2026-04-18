@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class GridContext
+[CreateAssetMenu(menuName = "Grid/GridConfig")]
+public class GridContext : ScriptableObject
 {
     [field:SerializeField] public Vector2Int gridSize { get; private set; }
     [field:SerializeField] public Vector2 cellSize { get; private set; }

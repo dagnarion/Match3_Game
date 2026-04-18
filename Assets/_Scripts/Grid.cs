@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Grid<T> where T : class
+public class Grid<T> where T : ItemSO
 {
     private Vector2Int gridSize;
     private T[,] slots;
@@ -9,6 +9,8 @@ public class Grid<T> where T : class
         this.gridSize = gridSize;
         slots = new T[gridSize.x,gridSize.y];
     }
+    
+    
     
     public void AddItemToSlot(T item,int x,int y)
     {
