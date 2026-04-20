@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba77f85aefcf2124782176bd9a3de772, type: 3}
-  m_Name: New Item SO
+  m_Name: Red
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 4
   <Sprite>k__BackingField: {fileID: 3600098460352613636, guid: 4afaea46464192c44967fb8e585d13e0, type: 3}
   <Animation>k__BackingField: {fileID: 9100000, guid: 9fde26bc2e549144d948d64868efdca2, type: 2}

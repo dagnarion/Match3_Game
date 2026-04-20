@@ -4,17 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemSO/Item")]
 public class ItemSO : ScriptableObject
 {
-  [field:SerializeField] public Item Type { get; private set; }
+  [field:SerializeField] public ItemConfig Type { get; private set; }
   [field:SerializeField] public Sprite Sprite { get; private set; }
   [field:SerializeField] public RuntimeAnimatorController Animation { get; private set; }
 }
 
-public enum Item
+public enum ItemConfig
 {
     None = 0,
-    Item1 = 1,
-    Item2 = 2,
-    Item3 = 3,
-    SpecialItem1 = 4,
-    SpecialItem2 = 5
+    Yellow = 1,
+    Green = 2,
+    Gray = 3,
+    Red = 4,
+    Blue = 5
 }
