@@ -26,11 +26,23 @@ public class Grid
         return slots[x, y];
     }
 
+    public void SwapItem(Vector2Int item1,Vector2Int item2)
+    {
+        Item _item1 = slots[item1.x, item1.y];
+        Item _item2 = slots[item2.x, item2.y];
+        Vector3 tmpPosition = _item1.transform.position;
+        
+        _item1.SetPosition(_item2.transform.position);
+        _item2.SetPosition(tmpPosition);
+        slots[item1.x, item1.y] = _item2;
+        slots[item2.x, item2.y] = _item1;
+
+    }
+
     public void RemoveASlot(int x,int y)
     {
         if(IsEmptySlot(x,y)) return;
         slots[x,y].gameObject.SetActive(false);
-        slots[x, y] = null;
     }
 
     public bool IsEmptySlot(int x, int y)

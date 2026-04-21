@@ -15,7 +15,7 @@ public static class ItemFactory
         GameObject item = new GameObject(itemDefination.name);
 
         item.AddComponent<Item>().Init(itemDefination);
-        
+        item.AddComponent<BoxCollider2D>().isTrigger = true;
         Animator itemAnimator = item.AddComponent<Animator>();
         itemAnimator.runtimeAnimatorController = itemDefination.Animation;
         

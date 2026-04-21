@@ -13,9 +13,8 @@ public class GameBoard : MonoBehaviour
     private GridSpaceConverter gridSpaceConverter;
     private Grid slots;
     private GridDraw gridDraw;
-    private Camera mainCam;
     private bool[,] SlotCheck;
-
+    
     private void Awake()
     {
         Init();
@@ -27,25 +26,25 @@ public class GameBoard : MonoBehaviour
         gridDraw = new GridDraw(context);
         gridSpaceConverter = new GridSpaceConverter(context);
         SlotCheck = new bool[context.gridSize.x, context.gridSize.y];
-        mainCam = Camera.main;
     }
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int cell = gridSpaceConverter.GetCell(mousePosition);
-            if (cell != new Vector2Int(9999, 9999))
-            {
-                slots.RemoveASlot(cell.x, cell.y);
-            }
-        }
-
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
            MatchAllBoard();
         }
+    }
+
+    public void SwapItem(Vector2 startPosition,Vector2Int direction)
+    {
+        Vector2Int currentObject = gridSpaceConverter.GetCell(startPosition);
+        Vector2Int targetObject = currentObject +  direction;
+        
+        if(targetObject.x < 0 || targetObject.x >= context.gridSize.x || targetObject.y < 0 || targetObject.y >= context.gridSize.y) return;
+        slots.SwapItem(currentObject,targetObject);
+
     }
     
     private void FillItemToBoard()
