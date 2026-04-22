@@ -1,27 +1,23 @@
 using UnityEditor;
 using UnityEngine;
-[CustomEditor(typeof(GameBoard))]
+[CustomEditor(typeof(ItemSpawner))]
 public class GridEditor : Editor
 {
-    private GameBoard gameBoard;
+    private ItemSpawner spawner;
     private void Awake()
     {
-        gameBoard = (GameBoard) target;
+        spawner = (ItemSpawner) target;
     }
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        if (GUILayout.Button("Init"))
-        {
-            gameBoard.Init();
-        }
         if (GUILayout.Button("CreateGrid"))
         {
-            gameBoard.CreateBoard();
+            spawner.StartFillItemToBoard();
         }        
         if (GUILayout.Button("ClearGrid"))
         {
-            gameBoard.ClearBoard();
+            spawner.ClearFullItem();
         }
     }
 }

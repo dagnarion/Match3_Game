@@ -30,6 +30,7 @@ public class Grid
     {
         Item _item1 = slots[item1.x, item1.y];
         Item _item2 = slots[item2.x, item2.y];
+        if(_item1 == null || _item2 == null) return;
         Vector3 tmpPosition = _item1.transform.position;
         
         _item1.SetPosition(_item2.transform.position);

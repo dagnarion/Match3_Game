@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class DragHandler : MonoBehaviour
 {
     [SerializeField] private GameBoard _gameBoard;
+    private SwapHandler _swapHandler;
     Vector2 startPos;
     bool hasSwapped = false;
     private Camera mainCamera;
@@ -14,6 +15,7 @@ public class DragHandler : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+        _swapHandler = _gameBoard.SwapHandler;
     }
 
     private void Update()
@@ -33,7 +35,7 @@ public class DragHandler : MonoBehaviour
             if (delta.magnitude > threshold)
             {
                 Vector2Int dir = GetDirection(delta);
-                _gameBoard.SwapItem(startPos,dir);
+                _swapHandler.SwapItem(startPos,dir);
                 hasSwapped = true;
             }
         }
