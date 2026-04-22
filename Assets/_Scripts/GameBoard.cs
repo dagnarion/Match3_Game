@@ -8,11 +8,19 @@ public class GameBoard : MonoBehaviour
 {
     [Header("REFERENCE")] 
     [SerializeField] private GridContext context;
-    public SwapHandler SwapHandler { get; private set; }
+
+    private SwapHandler swapHandler;
+    private DragHandler dragHandler;
     private GridSpaceConverter gridSpaceConverter;
     private MatchDetector matchDetector;
     public  Grid slots { get; private set; }
     private GridDraw gridDraw;
+
+    public event Action Swaping;
+    public event Action Handling;
+    public event Action Matching;
+
+    private BoardState currentState = BoardState.Nozmal;
     
     private void Awake()
     {
@@ -24,17 +32,34 @@ public class GameBoard : MonoBehaviour
         slots = new Grid(context.gridSize);
         gridDraw = new GridDraw(context);
         gridSpaceConverter = new GridSpaceConverter(context);
-        matchDetector = new MatchDetector(context, slots);
-        SwapHandler = new SwapHandler(context, gridSpaceConverter, slots);
+        matchDetector = new MatchDetector(context, slots,this);
+        swapHandler = new SwapHandler(context, gridSpaceConverter, slots);
+        dragHandler = new DragHandler(this, swapHandler);
     }
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        switch (currentState)
         {
-           matchDetector.MatchAllBoard();
+            case BoardState.Swaping:
+                break;
+            
+            case BoardState.Matching:
+                break;
+            
+            case BoardState.Nozmal:
+                break;
+            
+            case BoardState.Calculate:
+                break;
         }
     }
+
+    private void SwapingState()
+    {
+        Swaping?.Invoke();
+    }
+    
     
     public void OnDrawGizmos()
     {
@@ -42,13 +67,13 @@ public class GameBoard : MonoBehaviour
         gridDraw.ChangeGridContext(context);
         gridDraw.Draw();
     }
+    public enum BoardState
+    {
+        Nozmal = 0,
+        Swaping = 1,
+        Matching = 2,
+        Calculate = 3
+    }
     
 }
 
-public enum BoardState
-{
-    Nozmal = 0,
-    Swaping = 1,
-    Handling = 2,
-    Calculate = 3
-}

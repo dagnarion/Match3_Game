@@ -3,22 +3,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragHandler : MonoBehaviour
+public class DragHandler
 {
-    [SerializeField] private GameBoard _gameBoard;
-    private SwapHandler _swapHandler;
+    private SwapHandler swapHandler;
     Vector2 startPos;
     bool hasSwapped = false;
     private Camera mainCamera;
     float threshold = 0.2f;
     
-    private void Awake()
+    public DragHandler(GameBoard gameBoard,SwapHandler swapHandler)
     {
         mainCamera = Camera.main;
-        _swapHandler = _gameBoard.SwapHandler;
+        this.swapHandler = swapHandler;
+        gameBoard.Swaping += DragHandle;
+
     }
 
-    private void Update()
+    private void DragHandle()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,7 +36,7 @@ public class DragHandler : MonoBehaviour
             if (delta.magnitude > threshold)
             {
                 Vector2Int dir = GetDirection(delta);
-                _swapHandler.SwapItem(startPos,dir);
+                swapHandler.SwapItem(startPos,dir);
                 hasSwapped = true;
             }
         }

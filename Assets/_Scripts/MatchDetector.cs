@@ -6,22 +6,23 @@ public class MatchDetector
     private GridContext context;
     private Grid slots;
     private bool[,] SlotCheck;
-
-    public MatchDetector(GridContext context,Grid slot)
+    
+    public MatchDetector(GridContext context,Grid slot,GameBoard gameBoard)
     {
         this.context = context;
         this.slots = slot;
         SlotCheck = new bool[context.gridSize.x, context.gridSize.y];
+        gameBoard.Matching += MatchAllBoard;
     }
 
-    public void ChangeContext(GridContext context,Grid slot)
+    private void ChangeContext(GridContext context,Grid slot)
     {
         this.context = context;
         this.slots = slot;
         SlotCheck = new bool[context.gridSize.x, context.gridSize.y];
     }
     
-    public void MatchAllBoard()
+    private void MatchAllBoard()
     {
         for(int i = 0;i<context.gridSize.x;i++)
         for (int j = 0; j < context.gridSize.y; j++)
