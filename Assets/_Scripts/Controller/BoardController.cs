@@ -21,6 +21,7 @@ public class BoardController : MonoBehaviour
         gridView = new GridView(config);
         boardModel = new BoardModel(grid,config);
         boardModel.OnItemCreate += boardView.CreateItemOnBoard;
+        boardView.Init(config);
     }
 
     private void Start()
@@ -32,10 +33,10 @@ public class BoardController : MonoBehaviour
     {
         boardModel.OnItemCreate -= boardView.CreateItemOnBoard;
     }
-
+    
     private void OnDrawGizmos()
     {
-        if(config == null) return;
+        if(config == null || gridView == null) return;
         gridView.Draw();
     }
 }

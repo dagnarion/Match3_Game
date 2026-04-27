@@ -6,7 +6,7 @@ public class BoardModel
 {
     private GridConfig Config;
     private GridModel<ItemModel> grid;
-    public event Action<ItemModel, GridConfig> OnItemCreate;
+    public event Action<ItemModel> OnItemCreate;
 
     public BoardModel(GridModel<ItemModel> grid, GridConfig config)
     {
@@ -23,7 +23,7 @@ public class BoardModel
         {
             ItemModel item = new ItemModel(x, y, RandomType());
             grid.SetCell(x, y, item);
-            OnItemCreate?.Invoke(item,Config);
+            OnItemCreate?.Invoke(item);
         }
     }
     

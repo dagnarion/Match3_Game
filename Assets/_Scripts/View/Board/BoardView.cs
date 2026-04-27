@@ -7,7 +7,8 @@ public class BoardView : MonoBehaviour
     
     [SerializeField] private Transform itemHolder;
     [SerializeField] private List<ItemView> itemPrefabs = new List<ItemView>();
-    private Dictionary<ItemType, ItemView> items = new Dictionary<ItemType, ItemView>(); 
+    private Dictionary<ItemType, ItemView> items = new Dictionary<ItemType, ItemView>();
+    private GridConfig config;
     
     private void Awake()
     {
@@ -17,8 +18,13 @@ public class BoardView : MonoBehaviour
             items.Add(item.Type,item);
         }
     }
+
+    public void Init(GridConfig config)
+    {
+        this.config = config;
+    }
     
-    public void CreateItemOnBoard(ItemModel itemModel,GridConfig config)
+    public void CreateItemOnBoard(ItemModel itemModel)
     {
         if (!items.ContainsKey(itemModel.Type))
         {
