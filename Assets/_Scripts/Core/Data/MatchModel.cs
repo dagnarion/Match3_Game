@@ -1,10 +1,11 @@
+using System;
+using NUnit.Framework;
 using UnityEngine;
 
 public class MatchModel
 {
     private GridConfig config;
     private GridModel<ItemModel> grid;
-    private bool IsCompleteMatching;
     public MatchModel(GridModel<ItemModel> grid,GridConfig config)
     {
         this.grid = grid;
@@ -13,38 +14,34 @@ public class MatchModel
 
     public void Match()
     {
-        // check row
-        IsCompleteMatching = true;
         for(int r = 0;r<config.GridSize.x;r++)
         for (int c = 0; c < config.GridSize.y-2; c++)
         {
-            int cell1 = Mathf.Abs((int)grid.GetCell(r, c).Type);
-            int cell2 = Mathf.Abs((int)grid.GetCell(r, c+1).Type);
-            int cell3 = Mathf.Abs((int)grid.GetCell(r, c+2).Type);
-            if (cell1 == cell2 && cell2 == cell3 && cell1 != 0)
+            ItemModel item1 = grid.GetCell(r, c);
+            ItemModel item2 = grid.GetCell(r, c+1);
+            ItemModel item3 = grid.GetCell(r, c+2);
+            if (item1 == null || item2 == null || item3 == null) return;
+            if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
-                grid.GetCell(r,c).SwapType((ItemType) (-cell1));
-                grid.GetCell(r,c+1).SwapType((ItemType) (-cell1));
-                grid.GetCell(r,c+2).SwapType((ItemType) (-cell1));
-                IsCompleteMatching = false;
+                     item1.SetMatchState(true);
+                     item2.SetMatchState(true);
+                     item3.SetMatchState(true);
             }
         }
         
         for(int c = 0;c<config.GridSize.y;c++)
         for (int r = 0; r < config.GridSize.x - 2; r++)
         {
-            int cell1 = Mathf.Abs((int)grid.GetCell(r, c).Type);
-            int cell2 = Mathf.Abs((int)grid.GetCell(r+1, c).Type);
-            int cell3 = Mathf.Abs((int)grid.GetCell(r+2, c).Type);
-            if (cell1 == cell2 && cell2 == cell3 && cell1 != 0)
+            ItemModel item1 = grid.GetCell(r, c);
+            ItemModel item2 = grid.GetCell(r+1, c);
+            ItemModel item3 = grid.GetCell(r+2, c);
+            if (item1 == null || item2 == null || item3 == null) return;
+            if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
-                grid.GetCell(r,c).SwapType((ItemType) (-cell1));
-                grid.GetCell(r+1,c).SwapType((ItemType) (-cell1));
-                grid.GetCell(r+2,c).SwapType((ItemType) (-cell1));
-                IsCompleteMatching = false;
+                item1.SetMatchState(true);
+                item2.SetMatchState(true);
+                item3.SetMatchState(true);
             }
         }
     }
-
-    public bool IsComplete() => IsCompleteMatching;
 }

@@ -35,4 +35,6 @@ public class BoardView : MonoBehaviour
         item.SetUp(itemModel,config);
     }
     
+    
+    
 }

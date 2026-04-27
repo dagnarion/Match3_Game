@@ -1,0 +1,15 @@
+D:\Match3\TestApp\bin\Debug\net9.0\TestApp.exe
+D:\Match3\TestApp\bin\Debug\net9.0\TestApp.deps.json
+D:\Match3\TestApp\bin\Debug\net9.0\TestApp.runtimeconfig.json
+D:\Match3\TestApp\bin\Debug\net9.0\TestApp.dll
+D:\Match3\TestApp\bin\Debug\net9.0\TestApp.pdb
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.AssemblyInfoInputs.cache
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.AssemblyInfo.cs
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.csproj.CoreCompileInputs.cache
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.sourcelink.json
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.dll
+D:\Match3\TestApp\obj\Debug\net9.0\refint\TestApp.dll
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.pdb
+D:\Match3\TestApp\obj\Debug\net9.0\TestApp.genruntimeconfig.cache
+D:\Match3\TestApp\obj\Debug\net9.0\ref\TestApp.dll

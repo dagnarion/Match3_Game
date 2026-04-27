@@ -23,7 +23,6 @@ public class GridModel<T>
     public void SetCell(int x,int y,T value)
     {
         if(!IsValidPosition(x,y)) return;
-     //   if(!IsEmptyCell(x,y)) return;
         grid[x, y] = value;
     }
 
