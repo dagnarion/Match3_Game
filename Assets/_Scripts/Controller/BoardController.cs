@@ -24,11 +24,11 @@ public class BoardController : MonoBehaviour
         grid = new GridModel<ItemModel>(config.GridSize.x,config.GridSize.y);
         gridView = new GridView(config);
         boardModel = new BoardModel(grid,config);
-        boardModel.OnItemCreate += boardView.CreateItemOnBoard;
+        boardModel.OnItemCreate += boardView.CreateFillItemToBoard;
         boardView.Init(config);
         matchModel = new MatchModel(grid,config);
         gravityModel = new GravityModel(grid, config);
-        swapingModel = new SwapingModel(grid, config);
+        swapingModel = new SwapingModel(grid);
         swapingController = new SwapingController(swapingModel,config);
     }
 
@@ -50,6 +50,12 @@ public class BoardController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            boardModel.FillItemToBoard();
+            gravityModel.ApplyGravity();
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             GridDebug();
@@ -63,12 +69,13 @@ public class BoardController : MonoBehaviour
 
     private void Start()
     {
-        boardModel.InitializeBoard();
+        boardModel.FillItemToBoard();
+        gravityModel.ApplyGravity();
     }
 
     private void OnDestroy()
     {
-        boardModel.OnItemCreate -= boardView.CreateItemOnBoard;
+        boardModel.OnItemCreate -= boardView.CreateFillItemToBoard;
     }
     
     private void OnDrawGizmos()

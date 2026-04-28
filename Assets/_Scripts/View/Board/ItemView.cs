@@ -8,13 +8,11 @@ public class ItemView : MonoBehaviour
     private ItemModel model;
     public event Action CompleteMove;
     private GridConfig config;
+    
     public void SetUp(ItemModel model,GridConfig config)
     {
         this.config = config;
         this.model = model;
-        Vector2 gridInWorld = config.GetGridInWorld();
-        Vector3 position = new Vector2(model.y,model.x) * config.CellSize + gridInWorld;
-        this.transform.position = position;
         model.Matched += ReleaseItem;
         model.PositionChange += MoveToPosition;
     }
@@ -28,6 +26,13 @@ public class ItemView : MonoBehaviour
     {
         model.Matched -= ReleaseItem;
         model.PositionChange -= MoveToPosition;
+    }
+
+    public void SetStartPosition(int x,int y)
+    {
+        Vector2 gridInWorld = config.GetGridInWorld();
+        Vector3 position = new Vector2(y,x) * config.CellSize + gridInWorld;
+        this.transform.position = position;
     }
     
     public void MoveToPosition(int x,int y,float duration)

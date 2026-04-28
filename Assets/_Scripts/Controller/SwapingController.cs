@@ -6,17 +6,20 @@ public class SwapingController
 {
     private GridConfig config;
     private SwapingModel swapingModel;
-    private Camera mainCam;
+    private WorldToGridConverter worldChange;
     private Vector2 mouseDownPosition;
     private Vector2Int currentCell;
     private bool HadSwap;
     private float thresHold = 0.3f;
+    private Camera mainCam;
 
-    public SwapingController(SwapingModel swapingModel,GridConfig config)
+
+    public SwapingController(SwapingModel swapingModel, GridConfig config)
     {
         this.swapingModel = swapingModel;
         mainCam = Camera.main;
         this.config = config;
+        worldChange = new WorldToGridConverter(config,Camera.main.transform.position);
     }
 
     public void SwapingHandle()
@@ -25,12 +28,12 @@ public class SwapingController
         {
             HadSwap = false;
             mouseDownPosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            currentCell = swapingModel.GetCellAtMousePosition(mouseDownPosition);
+            currentCell = worldChange.ConvertWorldPositionToGridCell(mouseDownPosition);
         }
 
         if (Input.GetMouseButton(0))
         {
-            if (HadSwap || currentCell == new Vector2Int(999, 999)) return;
+            if (HadSwap || currentCell.x<0 || currentCell.y<0 || currentCell.x >= config.GridSize.x || currentCell.x >= config.GridSize.y) return;
             Vector2 currentMousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
             if (Vector2.Distance(currentMousePosition, mouseDownPosition) > thresHold)
@@ -38,10 +41,10 @@ public class SwapingController
                 Vector2Int direction = GetDirection(currentMousePosition - mouseDownPosition);
 
                 Vector2Int nextCell = currentCell + direction;
-                
+
                 if (nextCell.x < 0 || nextCell.x >= config.GridSize.x || nextCell.y < 0 ||
                     nextCell.y >= config.GridSize.y) return;
-                
+
                 swapingModel.Swap(currentCell.x, currentCell.y, nextCell.x, nextCell.y);
                 HadSwap = true;
             }

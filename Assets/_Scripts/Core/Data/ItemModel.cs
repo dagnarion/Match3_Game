@@ -25,7 +25,7 @@ public class ItemModel
     {
         this.x = x;
         this.y = y;
-        PositionChange?.Invoke(x,y,0.2f);
+        PositionChange?.Invoke(x,y,1f);
     }
     
 }

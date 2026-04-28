@@ -23,14 +23,9 @@ public class Test : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mouseDownPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GetMousePos(mouseDownPosition);
         }
-   
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2Int direction = GetDirection(  currentMousePosition - mouseDownPosition);
-            Debug.Log(direction);
-        }
+        
     }
    
     private Vector2Int GetDirection(Vector2 mousePostion)
@@ -58,6 +53,6 @@ public class Test : MonoBehaviour
     {
         int x, y;
         GetXYInScreen(worldPos, out x, out y);
-        PrintCell(y, x);
+        PrintCell(x, y);
     }
 }
