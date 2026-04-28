@@ -38,7 +38,6 @@ public class SwapingController
                 Vector2Int direction = GetDirection(currentMousePosition - mouseDownPosition);
 
                 Vector2Int nextCell = currentCell + direction;
-                Debug.Log(currentCell + " " + nextCell);
                 
                 if (nextCell.x < 0 || nextCell.x >= config.GridSize.x || nextCell.y < 0 ||
                     nextCell.y >= config.GridSize.y) return;

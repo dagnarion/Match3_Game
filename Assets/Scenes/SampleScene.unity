@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513772d0fe1d6d648baa00009eeb4b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardController
-  config: {fileID: 11400000, guid: c5ecd58e77659f64eafebd51dd2202c0, type: 2}
+  config: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
   boardView: {fileID: 1489304540}
 --- !u!1 &1416881484
 GameObject:
@@ -433,7 +433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1416881485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a61ab69d4ac8b649be61e8886c4e1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Test
-  config: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
+  config: {fileID: 11400000, guid: c5ecd58e77659f64eafebd51dd2202c0, type: 2}
 --- !u!4 &1416881486
 Transform:
   m_ObjectHideFlags: 0

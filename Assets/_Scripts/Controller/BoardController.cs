@@ -50,6 +50,11 @@ public class BoardController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GridDebug();
+        }
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             gravityModel.ApplyGravity();
@@ -70,5 +75,22 @@ public class BoardController : MonoBehaviour
     {
         if(config == null || gridView == null) return;
         gridView.Draw();
+    }
+
+    private void GridDebug()
+    {
+        for (int x = 0; x < config.GridSize.x; x++)
+        {
+            string s = "";
+            for (int y = 0; y < config.GridSize.y; y++)
+            {
+                if (grid.GetCell(x,y) == null) s += " 0";
+                else
+                {
+                    s += (" " + grid.GetCell(x,y).Type.ToString()[0]) ;
+                }
+            }
+            Debug.Log(s);
+        }
     }
 }

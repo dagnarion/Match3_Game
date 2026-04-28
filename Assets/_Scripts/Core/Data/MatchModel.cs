@@ -20,7 +20,7 @@ public class MatchModel
             ItemModel item1 = grid.GetCell(r, c);
             ItemModel item2 = grid.GetCell(r, c+1);
             ItemModel item3 = grid.GetCell(r, c+2);
-            if (item1 == null || item2 == null || item3 == null) return;
+            if (item1 == null || item2 == null || item3 == null) continue;
             if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
                      item1.SetMatchState(true);
@@ -35,7 +35,7 @@ public class MatchModel
             ItemModel item1 = grid.GetCell(r, c);
             ItemModel item2 = grid.GetCell(r+1, c);
             ItemModel item3 = grid.GetCell(r+2, c);
-            if (item1 == null || item2 == null || item3 == null) return;
+            if (item1 == null || item2 == null || item3 == null) continue;
             if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
                 item1.SetMatchState(true);
