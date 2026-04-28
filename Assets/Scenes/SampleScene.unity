@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513772d0fe1d6d648baa00009eeb4b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardController
-  config: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
+  config: {fileID: 11400000, guid: c5ecd58e77659f64eafebd51dd2202c0, type: 2}
   boardView: {fileID: 1489304540}
 --- !u!1 &1416881484
 GameObject:
@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 1416881484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64689, y: -0.30021, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

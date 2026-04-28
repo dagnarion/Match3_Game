@@ -13,7 +13,7 @@ public class ItemView : MonoBehaviour
         this.config = config;
         this.model = model;
         Vector2 gridInWorld = config.GetGridInWorld();
-        Vector3 position = new Vector2(model.x,model.y) * config.CellSize + gridInWorld;
+        Vector3 position = new Vector2(model.y,model.x) * config.CellSize + gridInWorld;
         this.transform.position = position;
         model.Matched += ReleaseItem;
         model.PositionChange += MoveToPosition;
@@ -29,11 +29,11 @@ public class ItemView : MonoBehaviour
         model.Matched -= ReleaseItem;
         model.PositionChange -= MoveToPosition;
     }
-
+    
     public void MoveToPosition(int x,int y,float duration)
     {
         Vector2 gridInWorld = config.GetGridInWorld();
-        Vector3 position = new Vector2(x,y) * config.CellSize + gridInWorld;
+        Vector3 position = new Vector2(y,x) * config.CellSize + gridInWorld;
         transform.DOMove(position, duration).SetEase(Ease.OutCubic).OnComplete(() =>
         {
             CompleteMove?.Invoke();

@@ -7,8 +7,9 @@ public class Test : MonoBehaviour
     Vector2 cellSize;
     Vector2 originPosition;
     Vector2 cellOffSet;
+    private Vector2 mouseDownPosition;
+    private bool HadSwap;
     
-
     private void Awake()
     {
         cellSize = config.CellSize;
@@ -17,13 +18,28 @@ public class Test : MonoBehaviour
         originPosition = (Vector2)Camera.main.transform.position + offSet;
     }
     
-    void Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-           Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GetMousePos(mousePos);
+            mouseDownPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+   
+        if (Input.GetMouseButton(0))
+        {
+            Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2Int direction = GetDirection(  currentMousePosition - mouseDownPosition);
+            Debug.Log(direction);
+        }
+    }
+   
+    private Vector2Int GetDirection(Vector2 mousePostion)
+    {
+        if (Mathf.Abs(mousePostion.x) > Mathf.Abs(mousePostion.y))
+        {
+            return (mousePostion.x > 0) ? Vector2Int.right : Vector2Int.left;
+        }
+        return (mousePostion.y > 0) ? Vector2Int.up : Vector2Int.down;
     }
 
     void PrintCell(int x, int y)
@@ -42,6 +58,6 @@ public class Test : MonoBehaviour
     {
         int x, y;
         GetXYInScreen(worldPos, out x, out y);
-        PrintCell(x, y);
+        PrintCell(y, x);
     }
 }

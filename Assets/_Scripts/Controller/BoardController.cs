@@ -12,6 +12,8 @@ public class BoardController : MonoBehaviour
     private GridView gridView;
     private MatchModel matchModel;
     private GravityModel gravityModel;
+    private SwapingModel swapingModel;
+    private SwapingController swapingController;
     private void Awake()
     {
         Init();
@@ -26,10 +28,13 @@ public class BoardController : MonoBehaviour
         boardView.Init(config);
         matchModel = new MatchModel(grid,config);
         gravityModel = new GravityModel(grid, config);
+        swapingModel = new SwapingModel(grid, config);
+        swapingController = new SwapingController(swapingModel,config);
     }
 
     private void Update()
     {
+       swapingController.SwapingHandle();
         if (Input.GetKeyDown(KeyCode.A))
         {
             matchModel.Match();

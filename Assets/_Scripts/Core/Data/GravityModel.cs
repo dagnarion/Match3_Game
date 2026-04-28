@@ -24,7 +24,7 @@ public class GravityModel
                 if (grid.GetCell(r,c) != null)
                 {
                     grid.SetCell(idx, c, grid.GetCell(r, c));
-                    grid.GetCell(idx, c).SetPosition(r, c);
+                    grid.GetCell(idx, c).SetPosition(idx, c);
                     idx++;
                 }
             }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 6x7
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
   <CellSize>k__BackingField: {x: 1, y: 1}
-  <GridSize>k__BackingField: {x: 6, y: 3}
+  <GridSize>k__BackingField: {x: 3, y: 5}
   <GridPosition>k__BackingField: {x: 0, y: 0}
