@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BoardView : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class BoardView : MonoBehaviour
     private Camera mainCam;
     private WorldToGridConverter converter;
     private int YOutCameraValue;
+    private Dictionary<int, ItemView> ItemDictionary = new Dictionary<int, ItemView>();
+    public bool CompleteTransition { get; private set; }
+    private Sequence currentSq;
     private void Awake()
     {
         mainCam = Camera.main;
@@ -36,11 +41,40 @@ public class BoardView : MonoBehaviour
             return;
         }
 
-        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder);
-        item.SetUp(itemModel, config);
+        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); 
+        item.SetItemModel(itemModel);
+        item.SetGridConfig(config);
         item.SetStartPosition(YOutCameraValue,itemModel.x); // bug nma tu nhien ra hieu ung dep phet =)))
+        ItemDictionary.Add(itemModel.ID,item);
     }
 
+    public void DoItemsAnimation(List<int> ItemIDs,float duration)
+    {
+        if(ItemIDs.Count == 0) {CompleteTransition = true; return;}
+        CompleteTransition = false;
+        currentSq?.Kill();
+        currentSq = DOTween.Sequence();
+        foreach (int ID in ItemIDs)
+        {
+            if (ItemDictionary.TryGetValue(ID,out var item) && item!=null)
+            {
+                currentSq.Join(item.DoTransition(duration));
+            }
+        }
+        currentSq.OnComplete(() => { CompleteTransition = true; });
+    }
+
+    public void RemoveItemOnCell(int ID)
+    {
+        if (ItemDictionary.TryGetValue(ID, out var item) && item != null)
+        {
+            item.ReleaseItem();
+            ItemDictionary.Remove(ID);
+        }
+    }
+    
+
+    
     private int GetOutSightCamera()
     {
         Vector3 OutCameraPosition = mainCam.ViewportToWorldPoint(new Vector3(1f, 0.5f, 10f)) + new Vector3(1.5f,0,0); //bug nma tu nhien ra hieu ung dep phet =)))

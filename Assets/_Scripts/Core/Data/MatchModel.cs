@@ -6,6 +6,7 @@ public class MatchModel
 {
     private GridConfig config;
     private GridModel<ItemModel> grid;
+    public bool CanMatch { get; private set; }
     public MatchModel(GridModel<ItemModel> grid,GridConfig config)
     {
         this.grid = grid;
@@ -14,6 +15,7 @@ public class MatchModel
 
     public void Match()
     {
+        CanMatch = false;
         for(int r = 0;r<config.GridSize.x;r++)
         for (int c = 0; c < config.GridSize.y-2; c++)
         {
@@ -23,6 +25,7 @@ public class MatchModel
             if (item1 == null || item2 == null || item3 == null) continue;
             if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
+                     CanMatch = true;
                      item1.SetMatchState(true);
                      item2.SetMatchState(true);
                      item3.SetMatchState(true);
@@ -38,6 +41,7 @@ public class MatchModel
             if (item1 == null || item2 == null || item3 == null) continue;
             if (item1.Type == item2.Type && item2.Type == item3.Type)
             {
+                CanMatch = true;
                 item1.SetMatchState(true);
                 item2.SetMatchState(true);
                 item3.SetMatchState(true);
