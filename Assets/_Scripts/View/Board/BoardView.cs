@@ -33,7 +33,7 @@ public class BoardView : MonoBehaviour
         this.config = config;
     }
     
-    public void CreateFillItemToBoard(ItemModel itemModel)
+    public void CreateNozmalItemToBoard(ItemModel itemModel)
     {
         if (!items.ContainsKey(itemModel.Type))
         {
@@ -45,6 +45,21 @@ public class BoardView : MonoBehaviour
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
         item.SetStartPosition(YOutCameraValue,itemModel.x); // bug nma tu nhien ra hieu ung dep phet =)))
+        ItemDictionary.Add(itemModel.ID,item);
+    }
+
+    public void CreateSpecialItemToBoard(ItemModel itemModel)
+    {
+        if (!items.ContainsKey(itemModel.Type))
+        {
+            Debug.LogError("khong co item trong list");
+            return;
+        }
+
+        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); 
+        item.SetItemModel(itemModel);
+        item.SetGridConfig(config);
+        item.SetStartPosition(itemModel.x,itemModel.y);
         ItemDictionary.Add(itemModel.ID,item);
     }
 

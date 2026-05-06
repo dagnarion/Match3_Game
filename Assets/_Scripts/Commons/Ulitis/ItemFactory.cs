@@ -9,18 +9,19 @@ public static class ItemFactory
     private static int Range = Array.IndexOf(values, temp);
     public static ItemModel CreateRandomNormalItem(int x,int y)
     {
-        ItemModel model = new ItemModel(x, y, RandomType());
+        ItemModel model = CreateItem(RandomType(), x, y);
         return model;
     }
 
-    public static ItemModel CreateSpecialItem(int x,int y)
+    public static ItemModel CreateItem(ItemType type,int x,int y)
     {
-        return null;
+        ItemModel model = new ItemModel(x, y, type);
+        return model;
     }
     
     private static ItemType RandomType()
     {
-        int randomIndex = UnityEngine.Random.Range(1, Range);
+        int randomIndex = UnityEngine.Random.Range(1, 5); // test
         return values[randomIndex];
     }
     

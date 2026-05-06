@@ -18,7 +18,6 @@ public class RefillState : IState
 
     public void Update()
     {
-        Debug.Log("On Refill State");
         if (boardController.boardView.CompleteTransition)
         {
             stateMachine.ChangeState(boardController.MatchState);

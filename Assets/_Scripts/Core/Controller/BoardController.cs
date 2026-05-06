@@ -31,7 +31,8 @@ public class BoardController : MonoBehaviour
         GridModel = new GridModel<ItemModel>(Config.GridSize.x, Config.GridSize.y);
         gridView = new GridView(Config);
         BoardModel = new BoardModel(GridModel, Config);
-        BoardModel.OnItemCreate += boardView.CreateFillItemToBoard;
+        BoardModel.OnNozmalItemCreate += boardView.CreateNozmalItemToBoard;
+        BoardModel.OnSpecialItemCreate += boardView.CreateSpecialItemToBoard;
         boardView.Init(Config);
         MatchModel = new MatchModel(GridModel, Config);
         GravityModel = new GravityModel(GridModel, Config);
@@ -93,7 +94,7 @@ public class BoardController : MonoBehaviour
 
     private void OnDestroy()
     {
-        BoardModel.OnItemCreate -= boardView.CreateFillItemToBoard;
+        BoardModel.OnNozmalItemCreate -= boardView.CreateNozmalItemToBoard;
     }
 
     private void OnDrawGizmos()

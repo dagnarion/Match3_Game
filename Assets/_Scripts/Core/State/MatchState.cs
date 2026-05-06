@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class MatchState : IState
 {
     private StateMachine stateMachine;
     private BoardController boardController;
+    private List<(ItemType, Vector2Int)> specialItem;
     public MatchState(BoardController boardController,StateMachine stateMachine)
     {
         this.boardController = boardController;
@@ -13,11 +14,14 @@ public class MatchState : IState
     public void Enter()
     {
         boardController.MatchModel.Match();
+        if (boardController.MatchModel.CanMatch)
+        {
+            specialItem = boardController.MatchModel.GetSpecialItem();
+        }
     }
 
     public void Update()
     {
-        Debug.Log("On Match State");
         if (!boardController.MatchModel.CanMatch)
         {
             if(stateMachine.PreviousState is SwapState)  boardController.SwapingController.SwapBack();
@@ -34,7 +38,15 @@ public class MatchState : IState
                 boardController.GridModel.ClearACell(x, y);
             }
         }
-        
+
+        if (specialItem != null && specialItem.Count != 0)
+        {
+            foreach (var item in specialItem)
+            {
+                boardController.BoardModel.CreateSpecialItemToBoard(item.Item1, item.Item2.x, item.Item2.y);
+            }
+        }
+
         stateMachine.ChangeState(boardController.GravityState);
         
     }

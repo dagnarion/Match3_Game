@@ -371,37 +371,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &658330265
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658330266}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &658330266
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658330265}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.81, y: 0.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938522388
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,8 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513772d0fe1d6d648baa00009eeb4b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardController
-  config: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
-  boardView: {fileID: 1489304540}
+  <Config>k__BackingField: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
+  <boardView>k__BackingField: {fileID: 1489304540}
 --- !u!1 &1416881484
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +498,9 @@ MonoBehaviour:
   - {fileID: 930113084820996981, guid: affdca3eca43e27488923f7b80aa4593, type: 3}
   - {fileID: 2220204114645421429, guid: 95e8e5f9810279a4987ebf529f6fcbfb, type: 3}
   - {fileID: 2017209541986695836, guid: 1f41cfb2ae84b02418edd7ef7aae0efd, type: 3}
+  - {fileID: 2895084396058942938, guid: 9fa157020a7f9de4a9b98d466c434475, type: 3}
+  - {fileID: 89640468482531302, guid: 23fd5ec5428aa53499abe328ace14352, type: 3}
+  - {fileID: 1001487782791634847, guid: 4a4fff343adce5b44929d361dd54fe8b, type: 3}
 --- !u!4 &1489304541
 Transform:
   m_ObjectHideFlags: 0
@@ -554,4 +526,3 @@ SceneRoots:
   - {fileID: 938522390}
   - {fileID: 183863066}
   - {fileID: 1416881486}
-  - {fileID: 658330266}
