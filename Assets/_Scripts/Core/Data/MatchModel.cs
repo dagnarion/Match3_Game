@@ -12,12 +12,12 @@ public class MatchModel
     {
         this.grid = grid;
         this.config = config;
+        matchGrid = new MatchInfo[config.GridSize.x, config.GridSize.y];
     }
 
     public void Match()
     {
         CanMatch = false;
-        matchGrid = new MatchInfo[config.GridSize.x, config.GridSize.y];
         for (int row = 0; row < config.GridSize.x; row++)
             for (int col = 0; col < config.GridSize.y; col++)
             {
@@ -115,9 +115,9 @@ public class MatchModel
         return shapeHolder;
     }
 
-    public List<(ItemType,Vector2Int)> GetSpecialItem()
+    public List<(ItemType,Vector2Int)> GetSpecialItem(Vector2Int swapedPosition)
     {
-        List<MatchInfo> core = GetCoreItemInShape();
+        List<MatchInfo> core = GetCoreItemInShape(swapedPosition);
         List<(ItemType, Vector2Int)> itemHodler = new List<(ItemType, Vector2Int)>();
         foreach (var it in core)
         {
@@ -143,7 +143,7 @@ public class MatchModel
     }
     
 
-    private List<MatchInfo> GetCoreItemInShape()
+    private List<MatchInfo> GetCoreItemInShape(Vector2Int swapedPosition)
     {
         List<MatchInfo> cores = new List<MatchInfo>();
         List<List<MatchInfo>> shapes = FloodFill();
@@ -159,6 +159,25 @@ public class MatchModel
                     core = cell; // chỗ này nên xử lý là lấy ưu tiên kẹo người chơi swap
                 }
             }
+
+            if (core.h == 0 || core.v == 0)
+            {
+                shape.Sort((a, b) =>
+                {
+                    if (a.x != b.x) return a.x.CompareTo(b.x);
+                    return a.y.CompareTo(b.y);
+                });
+                core = shape[shape.Count / 2];
+            }
+
+            foreach (var c in shape)
+            {
+                if (c.x == swapedPosition.x && c.y == swapedPosition.y)
+                {
+                    core = c;
+                }
+            }
+            
             cores.Add(core);
         }
         return cores;

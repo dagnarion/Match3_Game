@@ -9,7 +9,7 @@ public class SwapingController
     private WorldToGridConverter worldChange;
     private Vector2 mouseDownPosition;
     private Vector2Int currentCell;
-    private Vector2Int nextCell;
+    public Vector2Int nextCell { get; private set; }
     public bool HadSwap { get; private set; }
     private float thresHold = 0.3f;
     private Camera mainCam;

@@ -52,37 +52,6 @@ public class BoardController : MonoBehaviour
     private void Update()
     {
         StateMachine.Update();
-        // SwapingController.SwapingHandle();
-        // if (Input.GetKeyDown(KeyCode.A))
-        // {
-        //     MatchModel.Match();
-        //     for (int x = 0; x < Config.GridSize.x; x++)
-        //     for (int y = 0; y < Config.GridSize.y; y++)
-        //     {
-        //         if (GridModel.IsEmptyCell(x, y)) continue;
-        //         if (GridModel.GetCell(x, y).IsMatched)
-        //         {
-        //            boardView.RemoveItemOnCell(GridModel.GetCell(x, y).ID);
-        //             GridModel.ClearACell(x, y);
-        //         }
-        //     }
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     BoardModel.FillItemToBoard();
-        //     GravityModel.ApplyGravity();
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     GridDebug();
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.B))
-        // {
-        //     GravityModel.ApplyGravity();
-        // }
     }
 
     private void Start()

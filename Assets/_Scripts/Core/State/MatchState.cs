@@ -16,7 +16,7 @@ public class MatchState : IState
         boardController.MatchModel.Match();
         if (boardController.MatchModel.CanMatch)
         {
-            specialItem = boardController.MatchModel.GetSpecialItem();
+            specialItem = boardController.MatchModel.GetSpecialItem(boardController.SwapingController.nextCell);
         }
     }
 

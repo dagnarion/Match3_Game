@@ -41,7 +41,7 @@ public class BoardView : MonoBehaviour
             return;
         }
 
-        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); 
+        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); // object pooling
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
         item.SetStartPosition(YOutCameraValue,itemModel.x); // bug nma tu nhien ra hieu ung dep phet =)))
