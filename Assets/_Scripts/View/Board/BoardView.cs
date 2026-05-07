@@ -33,7 +33,7 @@ public class BoardView : MonoBehaviour
         this.config = config;
     }
     
-    public void CreateNozmalItemToBoard(ItemModel itemModel)
+    public void CreateItemToSpawnPositionOnBoard(ItemModel itemModel)
     {
         if (!items.ContainsKey(itemModel.Type))
         {
@@ -44,11 +44,12 @@ public class BoardView : MonoBehaviour
         ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); // object pooling
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
-        item.SetStartPosition(YOutCameraValue,itemModel.x); // bug nma tu nhien ra hieu ung dep phet =)))
-        ItemDictionary.Add(itemModel.ID,item);
+        item.SetStartPosition(YOutCameraValue,itemModel.x);
+        if (!ItemDictionary.ContainsKey(itemModel.ID)) ItemDictionary.Add(itemModel.ID, item);
+        else ItemDictionary[itemModel.ID] = item;
     }
 
-    public void CreateSpecialItemToBoard(ItemModel itemModel)
+    public void CreateItemToSpecificPositionOnBoard(ItemModel itemModel)
     {
         if (!items.ContainsKey(itemModel.Type))
         {
@@ -60,7 +61,8 @@ public class BoardView : MonoBehaviour
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
         item.SetStartPosition(itemModel.x,itemModel.y);
-        ItemDictionary.Add(itemModel.ID,item);
+        if (!ItemDictionary.ContainsKey(itemModel.ID)) ItemDictionary.Add(itemModel.ID, item);
+        else ItemDictionary[itemModel.ID] = item;
     }
 
     public void DoItemsAnimation(List<int> ItemIDs,float duration)
@@ -86,9 +88,7 @@ public class BoardView : MonoBehaviour
             item.ReleaseItem();
             ItemDictionary.Remove(ID);
         }
-    }
-    
-
+    }    
     
     private int GetOutSightCamera()
     {

@@ -14,7 +14,8 @@ public class BoardController : MonoBehaviour
     public GravityModel GravityModel { get; private set; }
     private SwapingModel swapingModel;
     public SwapingController SwapingController { get; private set; }
-
+    public HintModel HintModel { get; private set; }
+    public ReshuffleModel ReshuffleModel { get; private set; }
     private StateMachine StateMachine;
     public SwapState SwapState { get; private set; }
     public MatchState MatchState { get; private set; }
@@ -31,13 +32,16 @@ public class BoardController : MonoBehaviour
         GridModel = new GridModel<ItemModel>(Config.GridSize.x, Config.GridSize.y);
         gridView = new GridView(Config);
         BoardModel = new BoardModel(GridModel, Config);
-        BoardModel.OnNozmalItemCreate += boardView.CreateNozmalItemToBoard;
-        BoardModel.OnSpecialItemCreate += boardView.CreateSpecialItemToBoard;
+        ReshuffleModel = new ReshuffleModel(GridModel, Config);
+        BoardModel.OnNozmalItemCreate += boardView.CreateItemToSpawnPositionOnBoard;
+        BoardModel.OnSpecialItemCreate += boardView.CreateItemToSpecificPositionOnBoard;
+        ReshuffleModel.OnReshuffle += boardView.CreateItemToSpawnPositionOnBoard;
         boardView.Init(Config);
         MatchModel = new MatchModel(GridModel, Config);
         GravityModel = new GravityModel(GridModel, Config);
         swapingModel = new SwapingModel(GridModel);
         SwapingController = new SwapingController(swapingModel, Config);
+        HintModel = new HintModel(GridModel,Config,MatchModel);
 
         GravityModel.OnItemChange += boardView.DoItemsAnimation;
         swapingModel.OnItemChange += boardView.DoItemsAnimation;
@@ -63,7 +67,7 @@ public class BoardController : MonoBehaviour
 
     private void OnDestroy()
     {
-        BoardModel.OnNozmalItemCreate -= boardView.CreateNozmalItemToBoard;
+        BoardModel.OnNozmalItemCreate -= boardView.CreateItemToSpawnPositionOnBoard;
     }
 
     private void OnDrawGizmos()

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cd90c4d9735db448b9eb62b8b1833d, type: 3}
   m_Name: 10x10
   m_EditorClassIdentifier: Assembly-CSharp::GridConfig
-  <CellSize>k__BackingField: {x: 0, y: 0}
-  <GridSize>k__BackingField: {x: 0, y: 0}
+  <CellSize>k__BackingField: {x: 1, y: 1}
+  <GridSize>k__BackingField: {x: 10, y: 10}
   <GridPosition>k__BackingField: {x: 0, y: 0}

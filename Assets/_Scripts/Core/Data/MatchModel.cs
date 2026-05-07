@@ -183,7 +183,6 @@ public class MatchModel
         return cores;
     }
     
-    
 }
 
 public struct MatchInfo
