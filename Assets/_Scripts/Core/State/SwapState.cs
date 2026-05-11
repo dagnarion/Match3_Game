@@ -25,7 +25,8 @@ public class SwapState : IState
                     boardController.boardView.RemoveItemOnCell(boardController.GridModel.GetCell(x, y).ID);
             }
             boardController.ReshuffleModel.Reshuffle();
-            boardController.GravityModel.ApplyGravity();
+            stateMachine.ChangeState(boardController.GravityState);
+            return;
         }
     }
 

@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513772d0fe1d6d648baa00009eeb4b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardController
-  <Config>k__BackingField: {fileID: 11400000, guid: c5ecd58e77659f64eafebd51dd2202c0, type: 2}
+  <Config>k__BackingField: {fileID: 11400000, guid: 7aa5159a96a23784eb2b9953bcf34176, type: 2}
   <boardView>k__BackingField: {fileID: 1489304540}
 --- !u!1 &1416881484
 GameObject:
@@ -498,9 +498,21 @@ MonoBehaviour:
   - {fileID: 930113084820996981, guid: affdca3eca43e27488923f7b80aa4593, type: 3}
   - {fileID: 2220204114645421429, guid: 95e8e5f9810279a4987ebf529f6fcbfb, type: 3}
   - {fileID: 2017209541986695836, guid: 1f41cfb2ae84b02418edd7ef7aae0efd, type: 3}
-  - {fileID: 2895084396058942938, guid: 9fa157020a7f9de4a9b98d466c434475, type: 3}
-  - {fileID: 89640468482531302, guid: 23fd5ec5428aa53499abe328ace14352, type: 3}
-  - {fileID: 1001487782791634847, guid: 4a4fff343adce5b44929d361dd54fe8b, type: 3}
+  - {fileID: 5217657637595056024, guid: bd711ed528ce63a43950c7c71fe473e6, type: 3}
+  - {fileID: 1657260084839447223, guid: d6d00e92f2cab474b84c22fe6e7084e2, type: 3}
+  - {fileID: 615036499719964658, guid: c4895c1d9e049674fbcd91bf313078aa, type: 3}
+  - {fileID: 4252649746802735639, guid: 26c5656485e9a0f4a917003ebc00a011, type: 3}
+  - {fileID: 6307098828780181852, guid: 8f9744c7afe93404387aca22042574aa, type: 3}
+  - {fileID: 793745319074377344, guid: dbaa09283d8a17742abf4489f37e083a, type: 3}
+  - {fileID: 3818291897631608834, guid: 6536a42d450b4e542b112c4fe9051c99, type: 3}
+  - {fileID: 7970271931080890974, guid: f3f3c6168995fb242ac1ca58d10d8fe0, type: 3}
+  - {fileID: 2666862787269930524, guid: aeb733e0fccc1bf4da04cf31085af9a5, type: 3}
+  - {fileID: 8231488187574137381, guid: 45a28ab5d989b22428d9f41da92666fe, type: 3}
+  - {fileID: 847443879187373387, guid: 9213f1ca88d538240bc364339459a722, type: 3}
+  - {fileID: 4439705634191908652, guid: 62cd1bd8a5f58b54db7a7b87388544e5, type: 3}
+  - {fileID: 2452433136049456197, guid: 585f9e58c8979f341aef9ddaac5db1bc, type: 3}
+  - {fileID: 1293092722357815840, guid: bde9ebd2c5d7b5c47ae90d1766aaa569, type: 3}
+  - {fileID: 5193057091427159899, guid: c29c2325eacf1e64b9ed1f2c3400912a, type: 3}
 --- !u!4 &1489304541
 Transform:
   m_ObjectHideFlags: 0

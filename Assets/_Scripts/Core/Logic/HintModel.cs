@@ -24,9 +24,10 @@ public class HintModel
                 Vector2Int nextItem = currentItem + direction;
                 if(nextItem.x < 0 || nextItem.x >= config.GridSize.x || nextItem.y < 0 || nextItem.y >= config.GridSize.y) continue;
                 grid.SwapTwoCell(currentItem.x,currentItem.y,nextItem.x,nextItem.y);
-                matchModel.Match();
+               bool isMatch = matchModel.CheckMatchAt(nextItem.x,nextItem.y) || 
+                              matchModel.CheckMatchAt(currentItem.x,currentItem.y);
                 grid.SwapTwoCell(currentItem.x,currentItem.y,nextItem.x,nextItem.y);
-                if(matchModel.CanMatch) return;
+                if(isMatch) return;
             }
         }
         currentItem = new Vector2Int(-1, -1);

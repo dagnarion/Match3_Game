@@ -9,13 +9,14 @@ public static class ItemFactory
     private static int Range = Array.IndexOf(values, temp);
     public static ItemModel CreateRandomNormalItem(int x,int y)
     {
-        ItemModel model = CreateItem(RandomType(), x, y);
+        ItemModel model = CreateItem(RandomType(),ItemModifier.None, x, y);
         return model;
     }
 
-    public static ItemModel CreateItem(ItemType type,int x,int y)
+    
+    public static ItemModel CreateItem(ItemType type,ItemModifier modifier,int x,int y)
     {
-        ItemModel model = new ItemModel(x, y, type);
+        ItemModel model = new ItemModel(x, y,type,modifier);
         return model;
     }
     

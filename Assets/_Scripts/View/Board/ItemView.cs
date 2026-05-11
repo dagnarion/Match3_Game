@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemView : MonoBehaviour
 {
     [field:SerializeField]  public ItemType Type { get; private set; }
+    [field:SerializeField]  public ItemModifier Modityfier { get; private set; }
     private ItemModel model;
     private GridConfig config;
     

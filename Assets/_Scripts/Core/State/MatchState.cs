@@ -4,7 +4,7 @@ public class MatchState : IState
 {
     private StateMachine stateMachine;
     private BoardController boardController;
-    private List<(ItemType, Vector2Int)> specialItem;
+    private List<(ItemType,ItemModifier, Vector2Int)> specialItem;
     public MatchState(BoardController boardController,StateMachine stateMachine)
     {
         this.boardController = boardController;
@@ -32,18 +32,31 @@ public class MatchState : IState
         for (int y = 0; y < boardController.Config.GridSize.y; y++)
         {
             if (boardController.GridModel.IsEmptyCell(x, y)) continue;
-            if (boardController.GridModel.GetCell(x, y).IsMatched)
+            ItemModel item = boardController.GridModel.GetCell(x, y);
+            if(item.IsMatched && item.Modifier!=ItemModifier.None)
+            {
+                boardController.SpecialEffectModel.ApplyEffect(x, y);
+            }
+        }
+        
+        for (int x = 0; x < boardController.Config.GridSize.x; x++)
+        for (int y = 0; y < boardController.Config.GridSize.y; y++)
+        {
+            if (boardController.GridModel.IsEmptyCell(x, y)) continue;
+            ItemModel item = boardController.GridModel.GetCell(x, y);
+            if (item.IsMatched)
             {
                 boardController.boardView.RemoveItemOnCell(boardController.GridModel.GetCell(x, y).ID);
                 boardController.GridModel.ClearACell(x, y);
             }
         }
-
+        
+        
         if (specialItem != null && specialItem.Count != 0)
         {
             foreach (var item in specialItem)
             {
-                boardController.BoardModel.CreateSpecialItemToBoard(item.Item1, item.Item2.x, item.Item2.y);
+                boardController.BoardModel.CreateSpecialItemToBoard(item.Item1,item.Item2,item.Item3.x, item.Item3.y);
             }
         }
 

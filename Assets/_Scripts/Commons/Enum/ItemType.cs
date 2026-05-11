@@ -7,7 +7,13 @@ public enum ItemType
     Green = 3,
     Purple = 4,
     White = 5,
-    Stripped = 6,
-    Wrapped = 7,
-    Bomb = 8,
+}
+
+public enum ItemModifier
+{
+    None = 0,
+    VerticalStripped = 1,
+    HorizontalStripped = 2,
+    Wrapped = 3,
+    Bomb = 4,
 }

@@ -5,16 +5,18 @@ public class ItemModel
 {
     private static int ItemID;
     public ItemType Type { get; private set; }
+    public ItemModifier Modifier { get; private set; }
     public int x { get; private set; }
     public int y { get; private set; }
     public bool IsMatched { get; private set; }
     
     public int ID { get; private set; }
-    public ItemModel(int x,int y,ItemType type)
+    public ItemModel(int x,int y,ItemType type,ItemModifier modifier)
     {
         this.x = x;
         this.y = y;
         this.Type = type;
+        this.Modifier = modifier;
         IsMatched = false;
         ID = ItemID++;
     }

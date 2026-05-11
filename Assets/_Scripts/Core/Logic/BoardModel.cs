@@ -31,9 +31,9 @@ public class BoardModel
         }
     }
 
-    public void CreateSpecialItemToBoard(ItemType type,int x,int y)
+    public void CreateSpecialItemToBoard(ItemType type,ItemModifier modifier,int x,int y)
     {
-        ItemModel item = ItemFactory.CreateItem(type,x, y);
+        ItemModel item = ItemFactory.CreateItem(type,modifier,x, y);
         grid.SetCell(x, y, item);
         OnSpecialItemCreate?.Invoke(item);
     }

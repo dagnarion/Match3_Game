@@ -8,7 +8,7 @@ public class BoardView : MonoBehaviour
 {
     [SerializeField] private Transform itemHolder;
     [SerializeField] private List<ItemView> itemPrefabs = new List<ItemView>();
-    private Dictionary<ItemType, ItemView> items = new Dictionary<ItemType, ItemView>();
+    private Dictionary<(ItemType,ItemModifier), ItemView> items = new Dictionary<(ItemType,ItemModifier), ItemView>();
     private GridConfig config;
     private Camera mainCam;
     private WorldToGridConverter converter;
@@ -23,8 +23,8 @@ public class BoardView : MonoBehaviour
         YOutCameraValue = GetOutSightCamera();
         foreach (ItemView item in itemPrefabs)
         {
-            if (items.ContainsKey(item.Type)) continue;
-            items.Add(item.Type, item);
+            if (items.ContainsKey((item.Type,item.Modityfier)) )continue;
+            items.Add((item.Type,item.Modityfier), item);
         }
     }
     
@@ -35,13 +35,13 @@ public class BoardView : MonoBehaviour
     
     public void CreateItemToSpawnPositionOnBoard(ItemModel itemModel)
     {
-        if (!items.ContainsKey(itemModel.Type))
+        if (!items.ContainsKey((itemModel.Type,itemModel.Modifier)))
         {
             Debug.LogError("khong co item trong list");
             return;
         }
 
-        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); // object pooling
+        ItemView item = Instantiate<ItemView>(items[(itemModel.Type,itemModel.Modifier)], itemHolder); // object pooling
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
         item.SetStartPosition(YOutCameraValue,itemModel.x);
@@ -51,13 +51,13 @@ public class BoardView : MonoBehaviour
 
     public void CreateItemToSpecificPositionOnBoard(ItemModel itemModel)
     {
-        if (!items.ContainsKey(itemModel.Type))
+        if (!items.ContainsKey((itemModel.Type,itemModel.Modifier)))
         {
             Debug.LogError("khong co item trong list");
             return;
         }
 
-        ItemView item = Instantiate<ItemView>(items[itemModel.Type], itemHolder); 
+        ItemView item = Instantiate<ItemView>(items[(itemModel.Type,itemModel.Modifier)], itemHolder); 
         item.SetItemModel(itemModel);
         item.SetGridConfig(config);
         item.SetStartPosition(itemModel.x,itemModel.y);

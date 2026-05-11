@@ -21,6 +21,7 @@ public class BoardController : MonoBehaviour
     public MatchState MatchState { get; private set; }
     public RefillState RefillState { get; private set; }
     public GravityState GravityState { get; private set; }
+    public SpecialEffectModel SpecialEffectModel { get; private set; }
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class BoardController : MonoBehaviour
         swapingModel = new SwapingModel(GridModel);
         SwapingController = new SwapingController(swapingModel, Config);
         HintModel = new HintModel(GridModel,Config,MatchModel);
-
+        SpecialEffectModel = new SpecialEffectModel(GridModel,Config);
         GravityModel.OnItemChange += boardView.DoItemsAnimation;
         swapingModel.OnItemChange += boardView.DoItemsAnimation;
         

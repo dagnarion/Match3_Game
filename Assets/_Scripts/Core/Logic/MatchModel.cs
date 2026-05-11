@@ -84,6 +84,40 @@ public class MatchModel
         }
     }
 
+    public bool CheckMatchAt(int x,int y)
+    {
+            int col = 0;
+            while(col < config.GridSize.y)
+            {
+                int startPosition = col;
+                ItemModel startModel = grid.GetCell(x, col);
+                while (col < config.GridSize.y - 1 && startModel.Type == grid.GetCell(x, col + 1).Type) col++;
+                int length = col - startPosition + 1;
+                if (length >= 3)
+                {
+                    return true;
+                }
+                col++;
+            }
+            
+            int row = 0;
+            while (row < config.GridSize.x)
+            {
+                int startPosition = row;
+                ItemModel startModel = grid.GetCell(row, y);
+                while (row + 1 < config.GridSize.x && startModel.Type == grid.GetCell(row + 1, y).Type)
+                    row++;
+                int length = row - startPosition + 1;
+                if (length >= 3)
+                {
+                    return true;
+                }
+                row++;
+            }
+
+            return false;
+    }
+
     private void Dfs(int x,int y,ItemType type,List<MatchInfo> shape,bool[,] visited)
     {
         if(x < 0 || x >= config.GridSize.x || y < 0 || y >= config.GridSize.y || matchGrid[x,y].Type == ItemType.None || matchGrid[x,y].Type != type || visited[x,y])
@@ -115,27 +149,33 @@ public class MatchModel
         return shapeHolder;
     }
 
-    public List<(ItemType,Vector2Int)> GetSpecialItem(Vector2Int swapedPosition)
+    public List<(ItemType,ItemModifier,Vector2Int)> GetSpecialItem(Vector2Int swapedPosition)
     {
         List<MatchInfo> core = GetCoreItemInShape(swapedPosition);
-        List<(ItemType, Vector2Int)> itemHodler = new List<(ItemType, Vector2Int)>();
+        List<(ItemType,ItemModifier, Vector2Int)> itemHodler = new List<(ItemType,ItemModifier, Vector2Int)>();
         foreach (var it in core)
         {
-            if (it.h >= 5 || it.v >= 5)
-            {
-                itemHodler.Add((ItemType.Bomb,new Vector2Int(it.x,it.y)));
-                continue;
-            }
+            // if (it.h >= 5 || it.v >= 5)
+            // {
+            //     itemHodler.Add((it.Type,ItemModifier.Bomb,new Vector2Int(it.x,it.y)));
+            //     continue;
+            // }
 
             if (it.h >= 3 && it.v >= 3)
             {
-                itemHodler.Add((ItemType.Wrapped,new Vector2Int(it.x,it.y)));
+                itemHodler.Add((it.Type,ItemModifier.Wrapped,new Vector2Int(it.x,it.y)));
                 continue;
             }
 
-            if (it.v == 4 || it.h == 4)
+            if (it.h == 4)
             {
-                itemHodler.Add((ItemType.Stripped,new Vector2Int(it.x,it.y)));
+                itemHodler.Add((it.Type,ItemModifier.VerticalStripped,new Vector2Int(it.x,it.y)));
+                continue;
+            }
+
+            if (it.v == 4)
+            {
+                itemHodler.Add((it.Type,ItemModifier.HorizontalStripped,new Vector2Int(it.x,it.y)));
                 continue;
             }
         }
