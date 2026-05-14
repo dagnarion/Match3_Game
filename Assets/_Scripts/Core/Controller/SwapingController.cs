@@ -8,7 +8,7 @@ public class SwapingController
     private SwapingModel swapingModel;
     private WorldToGridConverter worldChange;
     private Vector2 mouseDownPosition;
-    private Vector2Int currentCell;
+    public Vector2Int currentCell { get; private set; }
     public Vector2Int nextCell { get; private set; }
     public bool HadSwap { get; private set; }
     private float thresHold = 0.3f;

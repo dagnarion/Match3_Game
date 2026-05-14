@@ -155,11 +155,11 @@ public class MatchModel
         List<(ItemType,ItemModifier, Vector2Int)> itemHodler = new List<(ItemType,ItemModifier, Vector2Int)>();
         foreach (var it in core)
         {
-            // if (it.h >= 5 || it.v >= 5)
-            // {
-            //     itemHodler.Add((it.Type,ItemModifier.Bomb,new Vector2Int(it.x,it.y)));
-            //     continue;
-            // }
+            if (it.h >= 5 || it.v >= 5)
+            {
+                itemHodler.Add((it.Type,ItemModifier.Bomb,new Vector2Int(it.x,it.y)));
+                continue;
+            }
 
             if (it.h >= 3 && it.v >= 3)
             {

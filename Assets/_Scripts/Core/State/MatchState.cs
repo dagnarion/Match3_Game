@@ -28,6 +28,7 @@ public class MatchState : IState
             stateMachine.ChangeState(boardController.SwapState);
             return;
         }
+        
         for (int x = 0; x < boardController.Config.GridSize.x; x++)
         for (int y = 0; y < boardController.Config.GridSize.y; y++)
         {

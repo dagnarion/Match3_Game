@@ -39,7 +39,7 @@ public class GravityModel
                 grid.ClearACell(r,c);
             }
         }
-        OnItemChange?.Invoke(itemHolder,0.6f);
+        OnItemChange?.Invoke(itemHolder,0.7f);
     }
     
     
